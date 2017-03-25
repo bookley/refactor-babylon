@@ -37,8 +37,8 @@ export default class TestSceneInitializer implements SceneInitializer {
 
         let mc = new Hammer(this._engine.getRenderingCanvas() as HTMLElement);
         mc.on('tap', (ev) => {
-            if(ev.srcEvent.type == "MouseEvent"){
-                let mouseEv = ev.srcEvent as MouseEvent;
+            if(ev.srcEvent instanceof PointerEvent){
+                let mouseEv = ev.srcEvent as PointerEvent;
                 var pickResult = this._scene.pick(mouseEv.clientX, mouseEv.clientY);
                 if(pickResult.hit){
                     this.addBox(pickResult.pickedPoint.x, pickResult.pickedPoint.z, shadowGenerator);
@@ -53,7 +53,7 @@ export default class TestSceneInitializer implements SceneInitializer {
 
     addBox(x: number, z: number, shadowGenerator: BABYLON.IShadowGenerator){
         let box = BABYLON.Mesh.CreateBox("box", 2.0, this._scene);
-        box.position.y = 1;
+        box.position = new BABYLON.Vector3(x, 1, z);
         let boxMaterial = new BABYLON.StandardMaterial("texture1", this._scene);
         boxMaterial.diffuseColor = new BABYLON.Color3(1, 0, 0);
         boxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);

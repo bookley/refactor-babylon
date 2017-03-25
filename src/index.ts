@@ -6,7 +6,6 @@ import TestSceneInitializer from './scene/testSceneInitializer';
 const initialize = (canvas: HTMLCanvasElement) => {
     const engine = new BABYLON.Engine(canvas, true);
     const sceneInitializer: SceneInitializer = new TestSceneInitializer(engine);
-
     const scene = sceneInitializer.initialize();
     
     engine.runRenderLoop(() => {
