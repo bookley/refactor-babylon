@@ -1,37 +1,7 @@
-import { Engine } from 'babylonjs';
-import * as Hammer from 'hammerjs';
+import 'babylonjs';
+import BabylonHammerController from './camera/babylonHammerController';
 
 const CLEAR_COLOR = new BABYLON.Color3(1, 1, 1);
-
-class BabylonHammerController implements BABYLON.ICameraInput<BABYLON.ArcRotateCamera> {
-
-    public camera: BABYLON.ArcRotateCamera;
-    private hammerManager: HammerManager
-
-    constructor(){
-
-    }
-
-    getSimpleName(){
-        return "hammer";
-    }
-
-    getTypeName(){
-        return "BabylonHammerController";
-    }
-
-    attachControl(element: HTMLElement, noPreventDefault: boolean){
-        this.hammerManager = new Hammer(element);
-        this.hammerManager.on('pan', (ev) => {
-            this.camera.target.x += ev.velocityX;
-            this.camera.target.z -= ev.velocityY;
-        });
-    }
-
-    detachControl(element: HTMLElement){}
-
-    checkInputs(){}
-}
 
 function addBox(scene: BABYLON.Scene, x: number, z: number, shadowGenerator: BABYLON.IShadowGenerator){
     let box = BABYLON.Mesh.CreateBox("box", 2.0, scene);
