@@ -1,5 +1,9 @@
+var webpack = require("webpack");
+
 module.exports = {
-    entry: "./src/index.ts",
+    entry: { 
+        app: "./src/index.ts"
+    },
     output: {
         filename: "bundle.js",
         path: __dirname + "/dist"
